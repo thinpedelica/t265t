@@ -51,12 +51,12 @@ void BoxDrawer::updateBoxSize() {
 }
 
 void BoxDrawer::draw() {
-    ofSetColor(230, 0, 200, 128);
+    ofSetColor(230, 0, 200, 64);
     ofNoFill();
 
     float x_offset = -translate_distance_;
     for (auto& box : boxes_) {
-        box.setPosition(x_offset, 0.0, 500.0);
+        box.setPosition(x_offset, 0.0, -1000.0);
         box.rotate(rotate_angle_, 1.0, 1.0, 1.0);
         box.drawFaces();
 

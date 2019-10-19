@@ -14,8 +14,8 @@ public:
 
 private:
     static constexpr size_t   kBoxNum  = 3;
-    static constexpr float    kBoxSize = 30.0;
-    static constexpr float    kBoxDistanceBase = kBoxSize * 1.5f;
+    static constexpr float    kBoxSize = 5.0;
+    static constexpr float    kBoxDistanceBase = kBoxSize * 5.f;
 
     static constexpr float kTranslateCountBase = (1.0f / 30.f) * 0.1f;
 
