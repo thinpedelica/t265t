@@ -101,6 +101,28 @@ void ofApp::arBigin() {
     ofPushMatrix();
     ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
 
+    translateCamByFishEyeCenter();
+    //translateCamByExtrinsics();
+    rotateCam();
+    cam_.begin();
+}
+
+void ofApp::arEnd() {
+    cam_.end();
+    ofPopMatrix();
+}
+
+void ofApp::translateCamByFishEyeCenter() {
+    float x = device_pose_in_world.translation.x * 1000;
+    float y = device_pose_in_world.translation.y * 1000;
+    float z = device_pose_in_world.translation.z * 1000;
+
+    cam_.setPosition(x,
+                     y,
+                     z);
+}
+
+void ofApp::translateCamByExtrinsics() {
     float x = -device_pose_in_world.translation.x * 1000;
     float y = -device_pose_in_world.translation.y * 1000;
     float z = -device_pose_in_world.translation.z * 1000;
@@ -109,20 +131,17 @@ void ofApp::arBigin() {
     float y2 = extrinsics.rotation[1] * x + extrinsics.rotation[4] * y + extrinsics.rotation[7] * z + extrinsics.translation[1] * 1000;
     float z2 = extrinsics.rotation[2] * x + extrinsics.rotation[5] * y + extrinsics.rotation[8] * z + extrinsics.translation[2] * 1000;
 
+    // https://github.com/IntelRealSense/librealsense/blob/master/examples/ar-basic/coordinates.jpg
     cam_.setPosition(-x2,
                      y2,
                      z2);
+}
 
+void ofApp::rotateCam() {
     ofQuaternion q(device_pose_in_world.rotation.x,
                    device_pose_in_world.rotation.y,
                    device_pose_in_world.rotation.z,
                    device_pose_in_world.rotation.w);
 
     cam_.setOrientation(q);
-    cam_.begin();
-}
-
-void ofApp::arEnd() {
-    cam_.end();
-    ofPopMatrix();
 }

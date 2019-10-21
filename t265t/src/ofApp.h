@@ -24,6 +24,9 @@ private:
     void drawFisheye();
     void arBigin();
     void arEnd();
+    void translateCamByFishEyeCenter();
+    void translateCamByExtrinsics();
+    void rotateCam();
 
 
     rs2::pipeline pipe;
