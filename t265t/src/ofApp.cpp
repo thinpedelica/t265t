@@ -78,8 +78,8 @@ void ofApp::draw() {
 
     arBigin();
 
-    ofSetColor(0);
-    ofDrawGrid(100, 50, true, true, true, false);
+    //ofSetColor(0);
+    //ofDrawGrid(100, 50, true, true, true, false);
 
     box_drawer_.draw();
 
